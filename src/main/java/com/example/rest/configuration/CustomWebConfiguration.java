@@ -23,6 +23,7 @@ public class CustomWebConfiguration implements WebMvcConfigurer {
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.favorPathExtension(true)
+                .favorParameter(true)
                 .ignoreAcceptHeader(true)
                 .parameterName("mediaType")
                 .defaultContentType(MediaType.APPLICATION_JSON)
