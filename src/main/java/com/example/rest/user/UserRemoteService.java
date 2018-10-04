@@ -1,0 +1,7 @@
+package com.example.rest.user;
+
+import java.util.List;
+
+public interface UserRemoteService {
+    List<User> getAll();
+}
