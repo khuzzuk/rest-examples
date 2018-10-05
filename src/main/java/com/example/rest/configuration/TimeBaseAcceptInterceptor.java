@@ -12,7 +12,7 @@ public class TimeBaseAcceptInterceptor extends HandlerInterceptorAdapter {
         Date date = new Date();
         if (date.getHours() > 18) {
             return false;
-        } else if (date.getHours() < 10) {
+        } else if (date.getHours() < 8) {
             return false;
         }
         return true;

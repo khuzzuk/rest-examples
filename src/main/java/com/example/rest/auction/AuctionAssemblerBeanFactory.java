@@ -3,17 +3,20 @@ package com.example.rest.auction;
 import com.example.rest.assembler.Assembler;
 import com.example.rest.user.User;
 import com.example.rest.user.UserDTO;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.FactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Component
 public class AuctionAssemblerBeanFactory implements FactoryBean<AuctionAssemblerBeanFactory.AuctionAssembler> {
+    private Assembler<User, UserDTO> userAssembler;
+
     @Override
     public AuctionAssembler getObject() {
-        return new AuctionAssembler();
+        return new AuctionAssembler(userAssembler);
     }
 
     @Override
@@ -21,8 +24,8 @@ public class AuctionAssemblerBeanFactory implements FactoryBean<AuctionAssembler
         return AuctionAssembler.class;
     }
 
+    @AllArgsConstructor
     static class AuctionAssembler implements Assembler<Auction, AuctionDTO> {
-        @Autowired
         private Assembler<User, UserDTO> userAssembler;
 
         @Override
